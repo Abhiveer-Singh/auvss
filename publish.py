@@ -30,7 +30,7 @@ class ArmPublisher(Node):
 
         self.shoulder = 90
         self.elbow    = 90
-        self.gripper  = 180
+        self.gripper  = 0
 
         self.lock     = threading.Lock()
         self.lt_held  = False
@@ -61,7 +61,7 @@ class ArmPublisher(Node):
                 print(f'[{src}] ELBOW    → {self.elbow} deg')
 
             elif servo == 'gripper':
-                self.gripper = self.clamp(self.gripper + (-STEP if direction == 'open' else STEP), 130, 180)
+                self.gripper = self.clamp(self.gripper + (-STEP if direction == 'open' else STEP), 0, 90)
                 self.send(self.pub_gripper, self.gripper)
                 print(f'[{src}] GRIPPER  → {self.gripper} deg')
 
